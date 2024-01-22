@@ -14,13 +14,15 @@ const Login = () => {
       });
 
       setLoginMessage(response.data.message); // Set the login message
-
+      console.log(loginMessage)
       if (response.data.message === 'Login successful') {
         // You can perform additional actions upon successful login
         // For example, redirect to another page
         // window.location.href = '/dashboard';
         window.location.href = '/profile'; 
-        
+      }else if (response.data.message === 'Another user is already logged in') {
+        // Display the message when another user is already logged in
+        setLoginMessage('Another user is already logged in.');
       }
     } catch (error) {
       console.error('Login failed:', error);

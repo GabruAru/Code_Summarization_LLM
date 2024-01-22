@@ -5,6 +5,7 @@ import Register from './Register';
 import Login from './Login';
 import Profile from './Profile';
 import ResetPassword from './ResetPassword';
+import EditProfile from './edit';
 import './AppStyles.css'; 
 
 import Chat from './chat';
@@ -31,6 +32,7 @@ const App = () => {
             <li>
             <Link to="/chat">chat</Link>  
             </li>
+            
           </ul>
         </nav>
 
@@ -40,6 +42,7 @@ const App = () => {
           <Route path="/profile" element={<Profile />} />
           <Route path="/reset_password" element={<ResetPassword />} />
           <Route path="/chat" element = {<Chat />} />
+          <Route path="/edit" element = {<EditProfile />} />
         </Routes>
       </div>
     </Router>

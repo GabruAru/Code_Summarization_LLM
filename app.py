@@ -85,8 +85,9 @@ def login():
     user = User.query.filter_by(email=email).first()
     if user and bcrypt.check_password_hash(user.password, password):
         # Check if another user is already logged in
+        print(is_user_logged_in())
         if is_user_logged_in():
-            return jsonify({'message': 'Another user is already logged in'}), 401
+            return jsonify({'message': 'Another user is already logged in'})
 
         # Set the user as logged in
         set_logged_in_user(user.id)
@@ -95,48 +96,7 @@ def login():
     else:
         return jsonify({'message': 'Invalid credentials'}), 401
 
-#@app.route('/profile', methods=['GET'])
-#def get_profiles():
-#    with app.app_context():
-#        users = User.query.all()
-#        user_data = []
-#
-#        for user in users:
-#            user_info = {
-#                'id': user.id,
-#                'username': user.username,
-#                'email': user.email
-#            }
-#            user_data.append(user_info)
-#
-#    return jsonify(user_data)
-#
-#@app.route('/profile', methods=['PUT'])
-#def edit_profile():
-#    user_id = get_logged_in_user()
-#
-#    if not user_id:
-#        return jsonify({'message': 'User not logged in'}), 401
-#
-#    try:
-#        user = User.query.get(user_id)
-#        if not user:
-#            return jsonify({'message': 'User not found'}), 404
-#
-#        data = request.get_json()
-#
-#        # Update the user's profile data
-#        user.username = data.get('username', user.username)
-#        user.email = data.get('email', user.email)
-#
-#        db.session.commit()
-#
-#        return jsonify({'message': 'Profile updated successfully'})
-#
-#    except Exception as e:
-#        print(str(e))
-#        return jsonify({'message': 'Error updating profile'}), 500
-#    
+
 
 
 @app.route('/profile', methods=['GET'])
@@ -163,8 +123,7 @@ def profile():
                         'username': user.username
                     }
                     all_users_info.append(user_info)
-            print(all_users_info)
-            print(current_user_info)
+        
             return jsonify({
                 'current_user': current_user_info,
                 'all_users': all_users_info
@@ -182,6 +141,29 @@ def logout():
     current_logged_in_user = None
     return jsonify({'message': 'Logout successful'})
 
+# edit route
+@app.route('/edit', methods=['PUT'])
+def edit():
+    user_id= get_logged_in_user()
+    print(user_id)
+    if user_id:
+        user = User.query.get(user_id)
+        data = request.get_json()
+        new_username = data.get('username')
+        new_email = data.get('email')
+        password = data.get('password')
+        if not new_username or not new_email or not password:
+            return {'message': 'Invalid input'}, 400
+
+        if not bcrypt.check_password_hash(user.password, password):
+            return {'message': 'Invalid password'}, 401
+        
+        user.username = new_username
+        user.email = new_email
+
+        db.session.commit()
+
+        return {'message': 'Update successful'}, 200
 
 
 if __name__ == '__main__':
