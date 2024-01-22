@@ -5,6 +5,7 @@ import Register from './Register';
 import Login from './Login';
 import Profile from './Profile';
 import ResetPassword from './ResetPassword';
+import './AppStyles.css'; 
 
 import Chat from './chat';
 

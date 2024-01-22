@@ -19,6 +19,7 @@ const Login = () => {
         // You can perform additional actions upon successful login
         // For example, redirect to another page
         // window.location.href = '/dashboard';
+        window.location.href = '/profile'; 
         
       }
     } catch (error) {
@@ -50,7 +51,11 @@ const Login = () => {
         <button type="button" onClick={handleLogin}>Login</button>
         <button type="button" onClick={handleLogout}>Logout</button>
 
-        {loginMessage && <p>{loginMessage}</p>}
+        {loginMessage && (
+          <p className={loginMessage.includes('successful') ? 'success-message' : 'error-message'}>
+        {loginMessage}
+          </p>
+      )}
       </form>
     </div>
   );

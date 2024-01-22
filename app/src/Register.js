@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import './style.css'
+
 
 const RegistrationForm = () => {
   const [formData, setFormData] = useState({
@@ -51,7 +53,11 @@ const RegistrationForm = () => {
         <input type="password" name="password" onChange={handleInputChange} />
       </label>
       <button type="submit">Register</button>
-      {RegisterMessage && <p>{RegisterMessage}</p>}
+      {RegisterMessage && (
+        <p className={RegisterMessage.includes('successful') ? 'success-message' : 'error-message'}>
+          {RegisterMessage}
+        </p>
+      )}
     </form>
   );
 };

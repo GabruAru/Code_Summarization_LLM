@@ -95,40 +95,83 @@ def login():
     else:
         return jsonify({'message': 'Invalid credentials'}), 401
 
-
-    
+#@app.route('/profile', methods=['GET'])
+#def get_profiles():
+#    with app.app_context():
+#        users = User.query.all()
+#        user_data = []
+#
+#        for user in users:
+#            user_info = {
+#                'id': user.id,
+#                'username': user.username,
+#                'email': user.email
+#            }
+#            user_data.append(user_info)
+#
+#    return jsonify(user_data)
+#
+#@app.route('/profile', methods=['PUT'])
+#def edit_profile():
+#    user_id = get_logged_in_user()
+#
+#    if not user_id:
+#        return jsonify({'message': 'User not logged in'}), 401
+#
+#    try:
+#        user = User.query.get(user_id)
+#        if not user:
+#            return jsonify({'message': 'User not found'}), 404
+#
+#        data = request.get_json()
+#
+#        # Update the user's profile data
+#        user.username = data.get('username', user.username)
+#        user.email = data.get('email', user.email)
+#
+#        db.session.commit()
+#
+#        return jsonify({'message': 'Profile updated successfully'})
+#
+#    except Exception as e:
+#        print(str(e))
+#        return jsonify({'message': 'Error updating profile'}), 500
+#    
 
 
 @app.route('/profile', methods=['GET'])
 def profile():
     with app.app_context():
-        users= User.query.all()
-        
-        user_data = [] 
-    
-    
+        users = User.query.all()
         user_id = get_logged_in_user()
-        print(user_id)
+
         if user_id:
+            current_user_info = {}
+            all_users_info = []
+
             for user in users:
                 if user_id == user.id:
-                    user_info = {
+                    current_user_info = {
                         'id': user.id,
                         'username': user.username,
                         'email': user.email
                     }
                 else:
-                        # Include only the username for other users
+                    # Include only the username for other users
                     user_info = {
+                        'id': user.id,
                         'username': user.username
                     }
-
-                user_data.append(user_info)
+                    all_users_info.append(user_info)
+            print(all_users_info)
+            print(current_user_info)
+            return jsonify({
+                'current_user': current_user_info,
+                'all_users': all_users_info
+            })
         else:
             # User is not logged in
-            return jsonify({'message': 'User not logged in'}), 401        
-    print(user_data)    
-    return jsonify(user_data)
+            return jsonify({'message': 'User not logged in'}), 401
         
 
 

@@ -1,0 +1,48 @@
+/* ProfileStyles.css */
+
+div {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  h2 {
+    text-align: center;
+    color: #333;
+  }
+  
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  li {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 4px;
+  }
+  
+  li:hover {
+    background-color: #f5f5f5;
+  }
+  
+
+  .dashboard-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  
+  .dashboard-user,
+  .profiles-container {
+    width: 48%; /* Adjust the width as needed */
+  }
+  
+  .profile-card {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin: 10px 0;
+  }
+  
+  
