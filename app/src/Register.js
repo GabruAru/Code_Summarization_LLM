@@ -1,7 +1,7 @@
+// Register.js
 import React, { useState } from 'react';
 import axios from 'axios';
-import './style.css';
-
+import './RegistrationForm.css'; // Import the CSS file for styling
 
 const RegistrationForm = () => {
   const [formData, setFormData] = useState({
@@ -9,7 +9,7 @@ const RegistrationForm = () => {
     email: '',
     password: '',
   });
-  const [RegisterMessage, setRegisterMessage] = useState('');
+  const [registerMessage, setRegisterMessage] = useState('');
 
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -25,8 +25,6 @@ const RegistrationForm = () => {
       setTimeout(() => {
         window.location.href = '/login';
       }, 1000); // Adjust the delay as needed
-    
-    
     } catch (error) {
       console.error('Registration failed', error);
       if (error.response && error.response.status === 400) {
@@ -39,25 +37,25 @@ const RegistrationForm = () => {
   };
 
   return (
-    <div>
+    <div className="registration-container">
       <h2>Register</h2>
       <form onSubmit={handleSubmit}>
-        <label>
-          Username:
+        <div className="form-group">
+          <label>Username:</label>
           <input type="text" name="username" onChange={handleInputChange} />
-        </label>
-        <label>
-          Email:
-          <input type="email" name="email" onChange={handleInputChange} />  
-        </label>
-        <label>
-          Password:
+        </div>
+        <div className="form-group">
+          <label>Email:</label>
+          <input type="email" name="email" onChange={handleInputChange} />
+        </div>
+        <div className="form-group">
+          <label>Password:</label>
           <input type="password" name="password" onChange={handleInputChange} />
-        </label>
+        </div>
         <button type="submit">Register</button>
-        {RegisterMessage && (
-          <p className={RegisterMessage.includes('successful') ? 'success-message' : 'error-message'}>
-            {RegisterMessage}
+        {registerMessage && (
+          <p className={registerMessage.includes('successful') ? 'success-message' : 'error-message'}>
+            {registerMessage}
           </p>
         )}
       </form>

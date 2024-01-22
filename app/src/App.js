@@ -6,15 +6,14 @@ import Login from './Login';
 import Profile from './Profile';
 import ResetPassword from './ResetPassword';
 import EditProfile from './edit';
-import './AppStyles.css'; 
-
 import Chat from './chat';
+import './AppStyles.css';  // Import the CSS file
 
 const App = () => {
   return (
     <Router>
-      <div>
-        <nav>
+      <div className="container">
+        <nav className="sidebar">
           <ul>
             <li>
               <Link to="/register">Register</Link>
@@ -28,22 +27,25 @@ const App = () => {
             <li>
               <Link to="/reset_password">Reset Password</Link>
             </li>
-    
             <li>
-            <Link to="/chat">chat</Link>  
+              <Link to="/chat">Chat</Link>
             </li>
-            
+            <li>
+              <Link to="/edit">Edit Profile</Link>
+            </li>
           </ul>
         </nav>
 
-        <Routes>
-          <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/reset_password" element={<ResetPassword />} />
-          <Route path="/chat" element = {<Chat />} />
-          <Route path="/edit" element = {<EditProfile />} />
-        </Routes>
+        <div className="content">
+          <Routes>
+            <Route path="/register" element={<Register />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/reset_password" element={<ResetPassword />} />
+            <Route path="/chat" element={<Chat />} />
+            <Route path="/edit" element={<EditProfile />} />
+          </Routes>
+        </div>
       </div>
     </Router>
   );

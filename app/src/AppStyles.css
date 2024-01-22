@@ -1,31 +1,47 @@
-body {
-  font-family: 'Arial', sans-serif;
+/* AppStyles.css */
+body, html {
+  height: 100%;
   margin: 0;
+}
+
+.container {
+  display: flex;
+  height: 100%;
+}
+
+.sidebar {
+  flex: 0 0 200px;  /* Fixed width for the sidebar */
+  background-color: #c0f9c8;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;  /* Make the sidebar cover the entire viewport height */
+}
+
+.sidebar ul {
+  list-style: none;
   padding: 0;
-  background-color: #f4f4f4;
+  flex-grow: 1;  /* Allow the list to take up the remaining space */
 }
 
-nav {
-  background-color: #3498db;
-  padding: 10px;
-  text-align: left; /* Align text to the left */
-  width: 100%; /* Make the nav element 100% wide */
+.sidebar li {
+  margin-bottom: 10px;
 }
 
-nav ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
+.content {
+  flex: 1;
+  padding: 20px;
 }
 
-nav li {
-  display: inline-block;
-  margin-right: 20px;
-}
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
 
-nav a {
-  text-decoration: none;
-  color: #6b0707;
-  font-weight: bold;
-  font-size: 16px;
+  .sidebar {
+    flex: 0 0 100%;  /* Full width for smaller screens */
+    height: auto;  /* Allow the sidebar to grow with content */
+  }
 }

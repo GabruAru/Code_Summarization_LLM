@@ -1,0 +1,51 @@
+/* chat.css */
+
+.chat-container {
+    max-width: 900px;
+    margin: 0 auto;
+    border-radius: 10px;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+    border-radius: 10px;
+  }
+  
+  textarea,
+  input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 4px;
+    box-sizing: border-box;
+    border-radius: 10px;
+  }
+  
+  select {  
+    width: 250px;
+    padding: 8px;
+    box-sizing: border-box;
+    margin-top: 4px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+  }
+  
+  .options-container {
+    display: flex;
+    justify-content: space-between;
+    border-radius: 10px;
+  }
+  
+  button {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    
+  }
+  
+  button:hover {
+    background-color: #45a049;
+  }
+  

@@ -1,7 +1,7 @@
 // EditProfile.js
 import React, { useState } from 'react';
 import axios from 'axios';
-import './style.css';
+/*import './style.css';*/
 
 const EditProfile = ({ userId, currentUsername, currentEmail, onCancel, onUpdate }) => {
   const [newUsername, setNewUsername] = useState(currentUsername || ''); // Set a default value or an empty string
