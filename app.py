@@ -26,6 +26,7 @@ class User(db.Model):
     username = db.Column(db.String(20), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(60), nullable=False)
+    reset_token = db.Column(db.String(100), nullable=True)
     
 def send_confirmation_email(email):
     msg = Message('Confirmation Email', sender='your_email@example.com', recipients=[email])
@@ -72,8 +73,6 @@ def register():
     #send_confirmation_email(data['email'])
 
     return jsonify({'message': 'Registration successful! Verification Email Sent.'})
-
-
 
 
 @app.route('/login', methods=['POST'])
@@ -164,6 +163,7 @@ def edit():
         db.session.commit()
 
         return {'message': 'Update successful'}, 200
+
 
 
 if __name__ == '__main__':

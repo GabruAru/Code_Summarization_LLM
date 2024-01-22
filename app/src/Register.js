@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import './style.css'
+import './style.css';
 
 
 const RegistrationForm = () => {
@@ -39,26 +39,29 @@ const RegistrationForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Username:
-        <input type="text" name="username" onChange={handleInputChange} />
-      </label>
-      <label>
-        Email:
-        <input type="email" name="email" onChange={handleInputChange} />
-      </label>
-      <label>
-        Password:
-        <input type="password" name="password" onChange={handleInputChange} />
-      </label>
-      <button type="submit">Register</button>
-      {RegisterMessage && (
-        <p className={RegisterMessage.includes('successful') ? 'success-message' : 'error-message'}>
-          {RegisterMessage}
-        </p>
-      )}
-    </form>
+    <div>
+      <h2>Register</h2>
+      <form onSubmit={handleSubmit}>
+        <label>
+          Username:
+          <input type="text" name="username" onChange={handleInputChange} />
+        </label>
+        <label>
+          Email:
+          <input type="email" name="email" onChange={handleInputChange} />  
+        </label>
+        <label>
+          Password:
+          <input type="password" name="password" onChange={handleInputChange} />
+        </label>
+        <button type="submit">Register</button>
+        {RegisterMessage && (
+          <p className={RegisterMessage.includes('successful') ? 'success-message' : 'error-message'}>
+            {RegisterMessage}
+          </p>
+        )}
+      </form>
+    </div>
   );
 };
 

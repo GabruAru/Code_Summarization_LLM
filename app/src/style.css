@@ -35,7 +35,8 @@ body {
     padding: 10px 15px;
     border: none;
     cursor: pointer;
-    border-radius: 4px;
+    border-radius: 10px;
+    margin-inline-start: 8px;
   }
   
   button:hover {
@@ -49,4 +50,5 @@ body {
   p.error-message {
     color: #c0392b;
   }
+  
   

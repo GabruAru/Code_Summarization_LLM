@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import './style.css';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -30,16 +31,7 @@ const Login = () => {
     }
   };
   const handleLogout = async () => {
-    try {
-      const response = await axios.post('http://127.0.0.1:5000/logout');
-
-      if (response.data.message === 'Logout successful') {
-        // Redirect to the login page
-        window.location.href = '/login';  
-      }
-    } catch (error) {
-      console.error('Logout failed:', error);
-    }
+    window.location.href = '/reset_password';
   };
 
   return (
@@ -51,7 +43,7 @@ const Login = () => {
         <label>Password:</label>
         <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
         <button type="button" onClick={handleLogin}>Login</button>
-        <button type="button" onClick={handleLogout}>Logout</button>
+        <button type="button" onClick={handleLogout}>Reset Password</button>
 
         {loginMessage && (
           <p className={loginMessage.includes('successful') ? 'success-message' : 'error-message'}>

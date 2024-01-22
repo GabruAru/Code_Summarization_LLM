@@ -29,6 +29,19 @@ const Profile = () => {
     fetchUsers();
   }, []);
 
+  const handleLogout = async () => {
+    try {
+      const response = await axios.post('http://127.0.0.1:5000/logout');
+
+      if (response.data.message === 'Logout successful') {
+        // Redirect to the login page
+        window.location.href = '/login';  
+      }
+    } catch (error) {
+      console.error('Logout failed:', error);
+    }
+  };
+
   const handleEdit = () => {
     // Toggle the editing state
     setIsEditing(!isEditing);
@@ -54,6 +67,7 @@ const Profile = () => {
               </div>
             )}
             <button onClick={handleEdit}>{isEditing ? 'Cancel' : 'Edit'}</button>
+            <button type="button" onClick={handleLogout}>Logout</button>
           </div>
           <div className="profiles-container">
             <h3>Users</h3>
