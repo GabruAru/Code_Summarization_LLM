@@ -167,19 +167,28 @@ def edit():
 
         return {'message': 'Update successful'}, 200
 
-@app.route('/chat', methods=['POST'])
+@app.route('/chat',methods=['GET', 'POST'])
 def chat():
-    data = request.json
-    # Access input values from the request
-    language = data.get('language')
-    additional_info = data.get('additionalInfo')
-    code_to_explain = data.get('codeToExplain')
-    desired_output = data.get('desiredOutput')
-    selected_tone = data.get('selectedTone')
-    selected_language = data.get('selectedLanguage')
-    #result = process_input(language, additional_info, code_to_explain, desired_output, selected_tone, selected_language)
-    5
-    return jsonify({'result': result})
+    if request.method == 'POST':
+        data = request.json
+        # Access input values from the request
+        language = data.get('language')
+        additional_info = data.get('additionalInfo')
+        code_to_explain = data.get('codeToExplain')
+        desired_output = data.get('desiredOutput')
+        selected_tone = data.get('selectedTone')
+        selected_language = data.get('selectedLanguage')
+        # result = process_input(language, additional_info, code_to_explain, desired_output, selected_tone, selected_language)
+        result = 5
+        return jsonify({'result': result})
+        
+    elif request.method == 'GET':
+        result = 5
+        # Handle GET request, maybe return some information or an error response
+        return jsonify({'result': result})
+    else:
+        # Handle other HTTP methods
+        return jsonify({'message': 'Method Not Allowed'}), 405
 
 
 if __name__ == '__main__':

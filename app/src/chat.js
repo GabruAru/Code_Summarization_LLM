@@ -37,7 +37,7 @@ const Chat = ({ isAuthenticated }) => {
       console.log(response.data);
 
       // Redirect or do other actions based on the response
-      window.location.href = '/output';
+      navigate('/output');
     } catch (error) {
       console.error('Error submitting form:', error);
       // Handle the error as needed
