@@ -1,12 +1,14 @@
 // Login.js
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import './Login.css'; // Import the CSS file for styling
 
-const Login = () => {
+const Login = ({ setIsAuthenticated, isAuthenticated}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loginMessage, setLoginMessage] = useState('');
+  const navigate = useNavigate();
 
   const handleLogin = async () => {
     try {
@@ -17,7 +19,10 @@ const Login = () => {
 
       setLoginMessage(response.data.message);
       if (response.data.message === 'Login successful') {
-        window.location.href = '/profile';
+        setIsAuthenticated(true); 
+        console.log(isAuthenticated)
+        navigate('/profile');
+        
       } else if (response.data.message === 'Another user is already logged in') {
         setLoginMessage('Another user is already logged in.');
       }

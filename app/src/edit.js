@@ -1,9 +1,20 @@
 // EditProfile.js
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 /*import './style.css';*/
 
-const EditProfile = ({ userId, currentUsername, currentEmail, onCancel, onUpdate }) => {
+const EditProfile = ({ isAuthenticated, userId, currentUsername, currentEmail, onCancel, onUpdate }) => {
+  const navigate = useNavigate();
+
+  // useEffect to check authentication status on component mount
+  useEffect(() => {
+    if (!isAuthenticated) {
+      // Redirect to login if not authenticated
+      navigate('/login');
+    }
+  }, [isAuthenticated, navigate]);
+  
   const [newUsername, setNewUsername] = useState(currentUsername || ''); // Set a default value or an empty string
   const [newEmail, setNewEmail] = useState(currentEmail || ''); // Set a default value or an empty string
   const [password, setPassword] = useState('');

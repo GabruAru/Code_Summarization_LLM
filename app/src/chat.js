@@ -1,7 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import './chat.css'; // Import the CSS file for styling
 
-const Chat = () => {
+const Chat = ({ isAuthenticated }) => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!isAuthenticated) {
+      // Redirect to login if not authenticated
+      navigate('/login');
+    }
+  }, [isAuthenticated, navigate]);
+
+
   const [language, setLanguage] = useState('');
   const [additionalInfo, setAdditionalInfo] = useState('');
   const [codeToExplain, setCodeToExplain] = useState('');
@@ -9,15 +21,27 @@ const Chat = () => {
   const [selectedTone, setSelectedTone] = useState('Professional');
   const [selectedLanguage, setSelectedLanguage] = useState('English');
 
-  const handleFormSubmit = () => {
-    console.log({
-      language,
-      additionalInfo,
-      codeToExplain,
-      desiredOutput,
-      selectedTone,
-      selectedLanguage,
-    });
+  const handleFormSubmit = async () => {
+    try {
+      // Make a POST request to the /chat endpoint with the input values
+      const response = await axios.post('http://127.0.0.1:5000/chat', {
+        language,
+        additionalInfo,
+        codeToExplain,
+        desiredOutput,
+        selectedTone,
+        selectedLanguage,
+      });
+
+      // Handle the response as needed
+      console.log(response.data);
+
+      // Redirect or do other actions based on the response
+      window.location.href = '/output';
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      // Handle the error as needed
+    }
   };
 
   return (

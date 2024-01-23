@@ -1,9 +1,21 @@
 // Profile.js
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 /*import './ProfileStyles.css';*/
 
-const Profile = () => {
+const Profile = ({ setIsAuthenticated, isAuthenticated }) => {
+
+  const navigate = useNavigate();
+  console.log(isAuthenticated)
+  // useEffect to check authentication status on component mount
+  useEffect(() => {
+    if (!isAuthenticated) {
+      // Redirect to login if not authenticated
+      navigate('/login');
+    }
+  }, [isAuthenticated, navigate]);
+
   const [users, setUsers] = useState([]);
   const [isEditing, setIsEditing] = useState(false);
 
@@ -35,6 +47,7 @@ const Profile = () => {
 
       if (response.data.message === 'Logout successful') {
         // Redirect to the login page
+        setIsAuthenticated(false); 
         window.location.href = '/login';  
       }
     } catch (error) {

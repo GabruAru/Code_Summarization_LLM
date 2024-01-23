@@ -3,6 +3,9 @@ from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from flask_mail import Mail, Message
+#from langchain_google_genai import ChatGoogleGenerativeAI
+#from langchain.prompts import PromptTemplate
+#from langchain.chains import LLMChain
 
 app = Flask(__name__)
 CORS(app, supports_credentials=True)  # Enable CORS for all routes
@@ -164,6 +167,19 @@ def edit():
 
         return {'message': 'Update successful'}, 200
 
+@app.route('/chat', methods=['POST'])
+def chat():
+    data = request.json
+    # Access input values from the request
+    language = data.get('language')
+    additional_info = data.get('additionalInfo')
+    code_to_explain = data.get('codeToExplain')
+    desired_output = data.get('desiredOutput')
+    selected_tone = data.get('selectedTone')
+    selected_language = data.get('selectedLanguage')
+    #result = process_input(language, additional_info, code_to_explain, desired_output, selected_tone, selected_language)
+    5
+    return jsonify({'result': result})
 
 
 if __name__ == '__main__':
