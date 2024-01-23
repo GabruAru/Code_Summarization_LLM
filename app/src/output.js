@@ -1,43 +1,49 @@
 // Output.js
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import { useNavigate , useLocation } from 'react-router-dom';
+import MarkdownRenderer from './MarkdownRenderer';
+
 import './chat.css'; // Import the CSS file for styling
 
 const Output = ({ isAuthenticated }) => {
     const navigate = useNavigate();
-    const [results, setResult] = useState(null);
-  
+    const location = useLocation();
+    const [result, setResult] = useState(null);
+
     useEffect(() => {
       if (!isAuthenticated) {
         // Redirect to login if not authenticated
         navigate('/login');
-      } else {
-        // Make an API call to fetch the result from the backend
-        axios.get('http://127.0.0.1:5000/chat')
-          .then(response => {
-            setResult(response.data.result);
-          })
-          .catch(error => {
-            console.error('Error fetching result:', error);
-          });
-      }
+      } 
     }, [isAuthenticated, navigate]);
+
+    useEffect(() => {
+        // Check if the result is available in the location state
+        const resultFromLocation = location.state && location.state.result;
+    
+        if (resultFromLocation !== undefined) {
+          setResult(resultFromLocation);
+        } else {
+          // Redirect to chat page if result is not available
+          navigate('/chat');
+        }
+      }, [location.state, navigate]);
   
-    return (
-      <div className="output-container">
-        <h2>Output</h2>
-  
-        {results !== null ? (
-          <div>
-            <p>Result: {results}</p>
-            {/* Display additional information as needed */}
-          </div>
-        ) : (
-          <p>Loading...</p>
-        )}
-      </div>
-    );
-  };
-  
-  export default Output;
+   
+  return (
+    <div className="output-container">
+      <h2>Output</h2>
+
+      {result !== null ? (
+        <div>
+          <MarkdownRenderer markdownContent={result} />
+          {/* Display additional information as needed */}
+        </div>
+      ) : (
+        <p>Loading...</p>
+      )}
+    </div>
+  );
+};
+
+export default Output;
