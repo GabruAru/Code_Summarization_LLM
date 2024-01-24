@@ -1,6 +1,6 @@
 # Code_Summarization_LLM
 
-# Your App Name Documentation
+# Documentation
 
 ## Overview
 Provide a brief overview of your web application, including its purpose and key features.
@@ -43,12 +43,72 @@ Make sure you have the following installed on your machine:
     ```
 4.  Activate the virtual environment:
 
-         On Windows:
-        ```bash
-        .\venv\Scripts\activate
-        ```
-        On macOS/Linux:
+    On Windows:
+    ```bash
+    .\venv\Scripts\activate
+    ```
+    
+     On macOS/Linux:
+     ```bash
+     source venv/bin/activate
+     ```
+5. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+   
+### Running the Backend  
 
-        ```bash
-           source venv/bin/activate
-        ```
+1. Set up environment variables if required.
+   
+   Create a file named `.env` in the root directory of your Flask application. This file will      store your environment variables.
+
+   Open the `.env` file and define the required environment variables. For example:
+
+   ```env
+   GOOGLE_API_KEY=your_google_api_key
+   ```
+2. Run the Flask application:
+
+   ```bash
+   python app.py
+   ```
+   The backend should be accessible at http://localhost:5000.
+
+### API Endpoints
+
+1.  Registers a New User: `POST /register`
+
+2.  Login: `POST /login`
+
+3.  Get User Profile `GET /profile`
+
+4.  Logout `POST /logout`
+
+5.  Edit User Profile `PUT /edit`
+
+6.  Chat and Summarization `POST /chat`
+
+## Frontend (React)
+
+### Prerequisites Backend
+Make sure you have the following installed on your machine:
+- Node.js
+- npm (Node Package Manager)
+
+### Installation Frontend
+1. Navigate to the frontend directory:
+   ```bash
+   cd app
+   ```
+2. Install dependencies:
+   ```bash
+   npm install
+   ```   
+
+### Running the Frontend 
+1. Start the React development server:
+   ```bash
+   npm start
+   ```
+   The frontend should be accessible at http://localhost:3000.
