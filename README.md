@@ -29,5 +29,26 @@ Make sure you have the following installed on your machine:
 1. Clone repository:
 
    ```bash
-   git clone https://github.com/your-username/your-flask-app.git
+   https://github.com/GabruAru/Code_Summarization_LLM.git
    ``````
+2. Navigate to the backend directory:
+
+    ```bash
+    cd backend
+    ```
+3. Create a virtual environment:    
+
+    ```bash
+    python -m venv venv
+    ```
+4.  Activate the virtual environment:
+
+         On Windows:
+        ```bash
+        .\venv\Scripts\activate
+        ```
+        On macOS/Linux:
+
+        ```bash
+           source venv/bin/activate
+        ```
