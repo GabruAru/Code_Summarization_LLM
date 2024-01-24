@@ -3,6 +3,7 @@
 # Documentation
 
 ## Overview
+This project showcases a comprehensive web application, utilizing Python for the backend, React.js for the frontend, and SQLite as the database. The application includes robust user authentication features, including user registration, email verification, a profile dashboard, and password reset functionality. Additionally, it incorporates an autonomous AI tool leveraging Large Language Models (LLMs) to generate concise code summaries, enhancing code comprehension without user intervention. 
 
 
 ## Table of Contents
