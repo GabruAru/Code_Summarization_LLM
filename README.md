@@ -3,7 +3,7 @@
 # Documentation
 
 ## Overview
-Provide a brief overview of your web application, including its purpose and key features.
+
 
 ## Table of Contents
 1. [Backend (Flask)](#backend-flask)
