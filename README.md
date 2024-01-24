@@ -22,8 +22,6 @@ Provide a brief overview of your web application, including its purpose and key 
 ### Prerequisites Backend
 Make sure you have the following installed on your machine:
 - Python
-- Flask
-- (Any additional dependencies)
 
 ### Installation Backend
 1. Clone repository:
