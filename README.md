@@ -18,6 +18,9 @@ This project showcases a comprehensive web application, utilizing Python for the
    - [Installation](#installation-frontend)
    - [Running the Frontend](#running-the-frontend)
 
+3. Demonstration Video
+   
+
 ## Backend (Flask)
 
 ### Prerequisites Backend
@@ -111,3 +114,10 @@ Make sure you have the following installed on your machine:
    npm start
    ```
    The frontend should be accessible at http://localhost:3000.
+
+## Demonstration Video
+
+
+
+https://github.com/GabruAru/Code_Summarization_LLM/assets/84130891/5c4ce0c1-4c0c-47a9-aff0-2ae28fcfb460
+
